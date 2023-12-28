@@ -4,6 +4,9 @@
     "patterns": [
         {
             "include": "#comment"
+        },
+        {
+            "include": "#expression"
         }
     ],
     "repository": {
@@ -12,6 +15,44 @@
                 {
                     "match": "(^#)([^>].*)?$\\n?",
                     "name": "comment.line.number-sign.uml"
+                }
+            ]
+        },
+        "expression": {
+            "patterns": [
+                {
+                    "include": "#literals"
+                },
+                {
+                    "include": "#paren-expression"
+                }
+            ]
+        },
+        "literals": {
+            "patterns": [
+                {
+                    "match": "-?\\b(\\d+(\\.\\d+)?)\\b",
+                    "name": "constant.numeric.uml"
+                }
+            ]
+        },
+        "paren-expression": {
+            "begin": "\\(",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.paren.open"
+                }
+            },
+            "end": "\\)",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.paren.close"
+                }
+            },
+            "name": "expression.group",
+            "patterns": [
+                {
+                    "include": "#expression"
                 }
             ]
         }
