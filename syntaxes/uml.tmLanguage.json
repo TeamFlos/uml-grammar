@@ -13,6 +13,9 @@
         },
         {
             "include": "#expression"
+        },
+        {
+            "include": "#string"
         }
     ],
     "repository": {
@@ -82,6 +85,40 @@
             "patterns": [
                 {
                     "include": "#expression"
+                }
+            ]
+        },
+        "string": {
+            "patterns": [
+                {
+                    "begin": "\"",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.quote.double.uml"
+                        }
+                    },
+                    "end": "\"",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.quote.double.uml"
+                        }
+                    },
+                    "name": "string.quoted.double.uml"
+                },
+                {
+                    "begin": "\\{",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.curly.open.uml"
+                        }
+                    },
+                    "end": "\\}",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.curly.close.uml"
+                        }
+                    },
+                    "name": "string.quoted.other.uml"
                 }
             ]
         },
