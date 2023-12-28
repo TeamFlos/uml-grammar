@@ -22,12 +22,32 @@
         "announcement": {
             "patterns": [
                 {
-                    "match": "\\b(let)\\b",
-                    "name": "storage.type.uml"
-                },
-                {
-                    "match": "=",
-                    "name": "keyword.operator.assignment.uml"
+                    "match": "\\b(let)\\b([^=]*)\\s*(=)\\s*(.*)",
+                    "captures": {
+                        "1": {
+                            "name": "storage.type.uml"
+                        },
+                        "2": {
+                            "patterns": [
+                                {
+                                    "include": "#variables"
+                                }
+                            ]
+                        },
+                        "3": {
+                            "name": "keyword.operator.assignment.uml"
+                        },
+                        "4": {
+                            "patterns": [
+                                {
+                                    "include": "#expression"
+                                },
+                                {
+                                    "include": "#rectLiteral"
+                                }
+                            ]
+                        }
+                    }
                 }
             ]
         },
@@ -72,7 +92,6 @@
             ]
         },
         "paren-expression": {
-            "match": "(\\()(.*)(\\))",
             "captures": {
                 "1": {
                     "name": "punctuation.paren.open.uml"
@@ -87,7 +106,8 @@
                 "3": {
                     "name": "punctuation.paren.close.uml"
                 }
-            }
+            },
+            "match": "(\\()(.*)(\\))"
         },
         "presetFunctions": {
             "patterns": [
@@ -125,10 +145,31 @@
                 }
             ]
         },
+        "rectLiteral": {
+            "captures": {
+                "1": {
+                    "name": "punctuation.bracket.angle.uml"
+                },
+                "2": {
+                    "patterns": [
+                        {
+                            "match": ",",
+                            "name": "keyword.separator.uml"
+                        },
+                        {
+                            "include": "#expression"
+                        }
+                    ]
+                },
+                "3": {
+                    "name": "punctuation.bracket.angle.uml"
+                }
+            },
+            "match": "(\\[)((?:[^,]+,){3}[^,]+)(\\])"
+        },
         "string": {
             "patterns": [
                 {
-                    "match": "(\")([^\"]*)(\")",
                     "captures": {
                         "1": {
                             "name": "punctuation.quote.double.uml"
@@ -137,6 +178,7 @@
                             "name": "punctuation.quote.double.uml"
                         }
                     },
+                    "match": "(\")([^\"]*)(\")",
                     "name": "string.quoted.double.uml"
                 },
                 {
