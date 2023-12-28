@@ -1,5 +1,8 @@
 {
   "name": "uml-grammar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TeamFlos/uml-grammar"},
   "displayName": "UML Grammar",
   "description": "Phira UML tool",
   "version": "0.0.1",
