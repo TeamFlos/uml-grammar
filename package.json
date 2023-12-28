@@ -1,0 +1,25 @@
+{
+  "name": "uml-grammar",
+  "displayName": "UML Grammar",
+  "description": "Phira UML tool",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "uml",
+      "aliases": ["UI markup language", "uml"],
+      "extensions": [".uml"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "uml",
+      "scopeName": "source.uml",
+      "path": "./syntaxes/uml.tmLanguage.json"
+    }]
+  }
+}
