@@ -3,6 +3,9 @@
     "name": "UI markup language",
     "patterns": [
         {
+            "include": "#announcement"
+        },
+        {
             "include": "#comment"
         },
         {
@@ -10,6 +13,18 @@
         }
     ],
     "repository": {
+        "announcement": {
+            "patterns": [
+                {
+                    "match": "\\b(let)\\b",
+                    "name": "storage.type.uml"
+                },
+                {
+                    "match": "=",
+                    "name": "keyword.operator.assignment.uml"
+                }
+            ]
+        },
         "comment": {
             "patterns": [
                 {
@@ -22,6 +37,9 @@
             "patterns": [
                 {
                     "include": "#literals"
+                },
+                {
+                    "include": "#variables"
                 },
                 {
                     "include": "#paren-expression"
@@ -53,6 +71,14 @@
             "patterns": [
                 {
                     "include": "#expression"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "match": "\\b([@a-zA-Z$_][a-zA-Z0-9-$_]*)\\b",
+                    "name": "variable.other.uml"
                 }
             ]
         }
