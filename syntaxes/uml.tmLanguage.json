@@ -51,6 +51,14 @@
                 }
             ]
         },
+        "boolean": {
+            "patterns": [
+                {
+                    "match": "\\b(true|false)\\b",
+                    "name": "constant.language.uml"
+                }
+            ]
+        },
         "comment": {
             "patterns": [
                 {
@@ -62,8 +70,29 @@
         "element": {
             "patterns": [
                 {
-                    "match": "^(btn|img|p|col)",
-                    "name": "entity.name.tag.uml"
+                    "match": "^(btn|img|p|col)(\\()((?:[^,]+,\\s*)*[^,]+)(\\))",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.tag.uml"
+                        },
+                        "2": {
+                            "name": "punctuation.paren.open.uml"
+                        },
+                        "3": {
+                            "patterns": [
+                                {
+                                    "match": ",",
+                                    "name": "keyword.separator.uml"
+                                },
+                                {
+                                    "include": "#parameterAssignment"
+                                }
+                            ]
+                        },
+                        "4": {
+                            "name": "punctuation.paren.close.uml"
+                        }
+                    }
                 }
             ]
         },
@@ -88,6 +117,48 @@
                 {
                     "match": "-?\\b(\\d+(\\.\\d+)?)\\b",
                     "name": "constant.numeric.uml"
+                }
+            ]
+        },
+        "parameterAssignment": {
+            "patterns": [
+                {
+                    "match": "\\b([a-zA-Z$_][a-zA-Z0-9-$_]*)\\b\\s*(:)\\s*([^,]*)",
+                    "captures": {
+                        "1": {
+                            "patterns": [
+                                {
+                                    "match": "\\b(id|url|c|r|t|action|cid|rn|rh|x|y|size|ml|mw)\\b",
+                                    "name": "variable.parameter.uml"
+                                }
+                            ]
+                        },
+                        "2": {
+                            "name": "keyword.operator.assignment.uml"
+                        },
+                        "3": {
+                            "patterns": [
+                                {
+                                    "include": "#rectLiteral"
+                                },
+                                {
+                                    "include": "#string"
+                                },
+                                {
+                                    "include": "#boolean"
+                                },
+                                {
+                                    "include": "#expression"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "include": "#expression"
+                },
+                {
+                    "include": "#rectLiteral"
                 }
             ]
         },
