@@ -72,24 +72,22 @@
             ]
         },
         "paren-expression": {
-            "begin": "\\(",
-            "beginCaptures": {
-                "0": {
-                    "name": "punctuation.paren.open"
+            "match": "(\\()(.*)(\\))",
+            "captures": {
+                "1": {
+                    "name": "punctuation.paren.open.uml"
+                },
+                "2": {
+                    "patterns": [
+                        {
+                            "include": "#expression"
+                        }
+                    ]
+                },
+                "3": {
+                    "name": "punctuation.paren.close.uml"
                 }
-            },
-            "end": "\\)",
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.paren.close"
-                }
-            },
-            "name": "expression.group",
-            "patterns": [
-                {
-                    "include": "#expression"
-                }
-            ]
+            }
         },
         "presetFunctions": {
             "patterns": [
@@ -130,15 +128,12 @@
         "string": {
             "patterns": [
                 {
-                    "begin": "\"",
-                    "beginCaptures": {
-                        "0": {
+                    "match": "(\")([^\"]*)(\")",
+                    "captures": {
+                        "1": {
                             "name": "punctuation.quote.double.uml"
-                        }
-                    },
-                    "end": "\"",
-                    "endCaptures": {
-                        "0": {
+                        },
+                        "3": {
                             "name": "punctuation.quote.double.uml"
                         }
                     },
