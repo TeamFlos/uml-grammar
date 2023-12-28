@@ -9,6 +9,9 @@
             "include": "#comment"
         },
         {
+            "include": "#element"
+        },
+        {
             "include": "#expression"
         }
     ],
@@ -30,6 +33,14 @@
                 {
                     "match": "(^#)([^>].*)?$\\n?",
                     "name": "comment.line.number-sign.uml"
+                }
+            ]
+        },
+        "element": {
+            "patterns": [
+                {
+                    "match": "^(btn|img|p|col)",
+                    "name": "entity.name.tag.uml"
                 }
             ]
         },
