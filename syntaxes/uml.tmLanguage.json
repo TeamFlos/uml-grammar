@@ -53,6 +53,9 @@
                     "include": "#literals"
                 },
                 {
+                    "include": "#presetFunctions"
+                },
+                {
                     "include": "#variables"
                 },
                 {
@@ -85,6 +88,42 @@
             "patterns": [
                 {
                     "include": "#expression"
+                }
+            ]
+        },
+        "presetFunctions": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "support.function.uml"
+                        }
+                    },
+                    "match": "\\b(sin|cos|tan|abs|exp|ln|sig|floor|ceil|round)\\b(?=\\s*\\([^,]+\\))"
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "support.function.uml"
+                        }
+                    },
+                    "match": "\\b(atan2|step)\\b(?=\\s*\\(([^,]+,)[^,]+\\))"
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "support.function.uml"
+                        }
+                    },
+                    "match": "\\b(clamp)\\b(?=\\s*\\(([^,]+,){2}[^,]+\\))"
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "support.function.uml"
+                        }
+                    },
+                    "match": "\\b(min|max)\\b(?=\\s*\\(([^,]+,)*[^,]+\\))"
                 }
             ]
         },
