@@ -22,7 +22,6 @@
         "announcement": {
             "patterns": [
                 {
-                    "match": "\\b(let)\\b([^=]*)\\s*(=)\\s*(.*)",
                     "captures": {
                         "1": {
                             "name": "storage.type.uml"
@@ -47,7 +46,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "match": "\\b(let)\\b([^=]*)\\s*(=)\\s*(.*)"
                 }
             ]
         },
@@ -70,7 +70,6 @@
         "element": {
             "patterns": [
                 {
-                    "match": "^(btn|img|p|col)(\\()((?:[^,]+,\\s*)*[^,]+)(\\))",
                     "captures": {
                         "1": {
                             "name": "entity.name.tag.uml"
@@ -92,7 +91,11 @@
                         "4": {
                             "name": "punctuation.paren.close.uml"
                         }
-                    }
+                    },
+                    "match": "^(btn|img|p|col)(\\()((?:[^,]+,\\s*)*[^,]+)(\\))"
+                },
+                {
+                    "include": "#v2-element"
                 }
             ]
         },
@@ -123,7 +126,6 @@
         "parameterAssignment": {
             "patterns": [
                 {
-                    "match": "\\b([a-zA-Z$_][a-zA-Z0-9-$_]*)\\b\\s*(:)\\s*([^,]*)",
                     "captures": {
                         "1": {
                             "patterns": [
@@ -152,13 +154,8 @@
                                 }
                             ]
                         }
-                    }
-                },
-                {
-                    "include": "#expression"
-                },
-                {
-                    "include": "#rectLiteral"
+                    },
+                    "match": "\\b([a-zA-Z$_][a-zA-Z0-9-$_]*)\\b\\s*(:)\\s*([^,]*)"
                 }
             ]
         },
@@ -269,6 +266,79 @@
                 }
             ]
         },
+        "v2-element": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.tag.uml"
+                        },
+                        "2": {
+                            "name": "punctuation.paren.open.uml"
+                        },
+                        "3": {
+                            "patterns": [
+                                {
+                                    "match": ",",
+                                    "name": "keyword.separator.uml"
+                                },
+                                {
+                                    "include": "#v2-parameterAssignment"
+                                }
+                            ]
+                        },
+                        "4": {
+                            "name": "punctuation.paren.close.uml"
+                        }
+                    },
+                    "match": "^(#>(?:rot|tr|alpha|mat|if-no-v2))(\\()((?:[^,]+,\\s*)*[^,]+)(\\))"
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.tag.uml"
+                        }
+                    },
+                    "match": "^(#>pop)"
+                }
+            ]
+        },
+        "v2-parameterAssignment": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "patterns": [
+                                {
+                                    "match": "\\b(angle|cx|cy|dx|dy|a|x[0-4]{2})\\b",
+                                    "name": "variable.parameter.uml"
+                                }
+                            ]
+                        },
+                        "2": {
+                            "name": "keyword.operator.assignment.uml"
+                        },
+                        "3": {
+                            "patterns": [
+                                {
+                                    "include": "#rectLiteral"
+                                },
+                                {
+                                    "include": "#string"
+                                },
+                                {
+                                    "include": "#boolean"
+                                },
+                                {
+                                    "include": "#expression"
+                                }
+                            ]
+                        }
+                    },
+                    "match": "\\b([a-zA-Z$_][a-zA-Z0-9-$_]*)\\b\\s*(:)\\s*([^,]*)"
+                }
+            ]
+        },
         "variables": {
             "patterns": [
                 {
@@ -276,12 +346,12 @@
                     "name": "variable.language.uml"
                 },
                 {
-                    "match": "\\.(x|y|w|h|l|t|r|b|cx|cy|l|last|c|cnt|count|t|touching|)\\b",
                     "captures": {
                         "1": {
                             "name": "entity.other.attribute-name.uml"
                         }
-                    }
+                    },
+                    "match": "\\.(x|y|w|h|l|t|r|b|cx|cy|l|last|c|cnt|count|t|touching|)\\b"
                 },
                 {
                     "match": "\\b([@a-zA-Z$_][a-zA-Z0-9-$_]*)\\b",
