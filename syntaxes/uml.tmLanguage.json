@@ -272,6 +272,18 @@
         "variables": {
             "patterns": [
                 {
+                    "match": "(top|\\$h)\\b",
+                    "name": "variable.language.uml"
+                },
+                {
+                    "match": "\\.(x|y|w|h|l|t|r|b|cx|cy|l|last|c|cnt|count|t|touching|)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.uml"
+                        }
+                    }
+                },
+                {
                     "match": "\\b([@a-zA-Z$_][a-zA-Z0-9-$_]*)\\b",
                     "name": "variable.other.uml"
                 }
