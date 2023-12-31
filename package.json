@@ -5,7 +5,7 @@
     "url": "https://github.com/TeamFlos/uml-grammar"},
   "displayName": "UML Grammar",
   "description": "Phira UML tool",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.85.0"
   },
